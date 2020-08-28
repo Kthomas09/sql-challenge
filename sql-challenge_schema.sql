@@ -3,19 +3,16 @@
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 -- Exported schema from QUICKDBD would not create appropriate code. 
 ------------------------------------------------
-DROP TABLE titles;
-DROP TABLE departments;
-DROP TABLE employees;
-DROP TABLE salaries;
-DROP TABLE dept_emp;
 DROP TABLE dept_man;
-
-
+DROP TABLE dept_emp;
+DROP TABLE salaries;
+DROP TABLE employees;
+DROP TABLE departments;
+DROP TABLE titles;
 ------------------------------------------------
--1
-CREATE TABLE "titles" (
-    "emp_title_id" varchar(30)   NOT NULL,
-    "titles" varchar(30)   NOT NULL,
+CREATE TABLE titles (
+    emp_title_id varchar(30)   NOT NULL,
+    titles varchar(30)   NOT NULL,
 	PRIMARY KEY (emp_title_id)
 );
 
@@ -27,11 +24,10 @@ CSV HEADER;
 SELECT *
 FROM titles;
 ------------------------------------------------
--2
-CREATE TABLE "departments" (
-    "dept_no" varchar(30)   NOT NULL,
-    "dept_name" varchar(30)   NOT NULL,
-    PRIMARY KEY ("dept_no")
+CREATE TABLE departments (
+    dept_no varchar(30)   NOT NULL,
+    dept_name varchar(30)   NOT NULL,
+    PRIMARY KEY (dept_no)
 );
 
 COPY departments(dept_no, dept_name)
@@ -42,15 +38,14 @@ CSV HEADER;
 SELECT *
 FROM departments;
 ------------------------------------------------
--3
 CREATE TABLE employees (
-    "emp_no" int   NOT NULL,
-    "emp_title_id" varchar(30)   NOT NULL,
-    "birth_date" date   NOT NULL,
-    "first_name" varchar(30)   NOT NULL,
-    "last_name" varchar(30)   NOT NULL,
-    "sex" varchar(30)   NOT NULL,
-    "hire_date" date   NOT NULL,
+    emp_no int   NOT NULL,
+    emp_title_id varchar(30)   NOT NULL,
+    birth_date date   NOT NULL,
+    first_name varchar(30)   NOT NULL,
+    last_name varchar(30)   NOT NULL,
+    sex varchar(30)   NOT NULL,
+    hire_date date   NOT NULL,
     PRIMARY KEY (emp_no),
 	FOREIGN KEY (emp_title_id) REFERENCES titles (emp_title_id)
 );
@@ -63,10 +58,9 @@ CSV HEADER;
 SELECT *
 FROM employees;
 ------------------------------------------------
--4
-CREATE TABLE "salaries" (
-    "emp_no" int   NOT NULL,
-    "salary" int   NOT NULL,
+CREATE TABLE salaries (
+    emp_no int   NOT NULL,
+    salary int   NOT NULL,
 	PRIMARY KEY (emp_no),
 	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
@@ -79,10 +73,9 @@ CSV HEADER;
 SELECT *
 FROM salaries;
 ------------------------------------------------
--5
-CREATE TABLE "dept_emp" (
-    "emp_no" int   NOT NULL,
-    "dept_no" varchar(30)   NOT NULL,
+CREATE TABLE dept_emp (
+    emp_no int   NOT NULL,
+    dept_no varchar(30)   NOT NULL,
 	PRIMARY KEY (dept_no, emp_no),
 	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
 	FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
@@ -96,12 +89,11 @@ CSV HEADER;
 SELECT *
 FROM dept_emp;
 ------------------------------------------------
--6
-CREATE TABLE "dept_man" (
-    "dept_no" varchar(30)   NOT NULL,
-    "emp_no" int   NOT NULL,
-	PRIMARY KEY (dept_no, emp_no)
-	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+CREATE TABLE dept_man (
+    dept_no varchar(30)   NOT NULL,
+    emp_no int   NOT NULL,
+	PRIMARY KEY (dept_no, emp_no),
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
 	FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
 );
 
