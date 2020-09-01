@@ -21,8 +21,6 @@ FROM '/Users/kent.thomas/Repository/sql-challenge/data/titles.csv'
 DELIMITER ','
 CSV HEADER;
 
-SELECT *
-FROM titles;
 ------------------------------------------------
 CREATE TABLE departments (
     dept_no varchar(30)   NOT NULL,
@@ -35,8 +33,6 @@ FROM '/Users/kent.thomas/Repository/sql-challenge/data/departments.csv'
 DELIMITER ','
 CSV HEADER;
 
-SELECT *
-FROM departments;
 ------------------------------------------------
 CREATE TABLE employees (
     emp_no int   NOT NULL,
@@ -55,8 +51,6 @@ FROM '/Users/kent.thomas/Repository/sql-challenge/data/employees.csv'
 DELIMITER ','
 CSV HEADER;
 
-SELECT *
-FROM employees;
 ------------------------------------------------
 CREATE TABLE salaries (
     emp_no int   NOT NULL,
@@ -70,8 +64,6 @@ FROM '/Users/kent.thomas/Repository/sql-challenge/data/salaries.csv'
 DELIMITER ','
 CSV HEADER;
 
-SELECT *
-FROM salaries;
 ------------------------------------------------
 CREATE TABLE dept_emp (
     emp_no int   NOT NULL,
@@ -86,8 +78,6 @@ FROM '/Users/kent.thomas/Repository/sql-challenge/data/dept_emp.csv'
 DELIMITER ','
 CSV HEADER;
 
-SELECT *
-FROM dept_emp;
 ------------------------------------------------
 CREATE TABLE dept_man (
     dept_no varchar(30)   NOT NULL,
@@ -102,7 +92,5 @@ FROM '/Users/kent.thomas/Repository/sql-challenge/data/dept_manager.csv'
 DELIMITER ','
 CSV HEADER;
 
-SELECT *
-FROM dept_man;
 ------------------------------------------------
 
